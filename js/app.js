@@ -3,14 +3,14 @@
 
     .config(['$routeProvider', function($routeProvider){
     	$routeProvider
-    	.when('/login-register',{
-    		templateUrl: "templates/login-register.html"
+    	.when('/login',{
+    		templateUrl: "templates/login.html"
        	})
         .when('/config',{
             templateUrl: "templates/config.html"
         })
     	.otherwise({
-    		redirectTo: "/login-register"
+    		redirectTo: "/login"
     	})
     }])
 
