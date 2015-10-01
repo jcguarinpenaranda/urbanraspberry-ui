@@ -33,6 +33,7 @@
                         if(data.status == 200){
                             $scope.user = {};
                             location.href="#/config";
+                            $scope.isLoggedIn = true;
                         }else{
                             alert("La contraseña es incorrecta.")
                         }
