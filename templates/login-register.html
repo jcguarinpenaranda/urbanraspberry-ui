@@ -1,50 +1,15 @@
-<div class="container">
+<div class="container" style="max-width:500px">
 
-	<h1 class="text-center">Your title</h1>
+	<h1 class="text-center">UrbanEyes</h1>
 
-	<tabset>
-		<tab>
-			<tab-heading>
-			Login
-		</tab-heading>
-		<div class="well">
-			<form ng-submit="login(e,p)">
-				<div class="form-group">
-					<label>E-mail</label>
-					<input type="email" name="email" ng-model="e" class="form-control">
-				</div>
-				<div class="form-group">
-					<label>Password</label>
-					<input type="password" name="password" ng-model="p" class="form-control">
-				</div>
-				<button type="submit" ng-disabled="!p || !e" class="btn btn-primary">Login</button>
-			</form>
-		</div>
-	</tab>
-
-</tab>
-<tab select="alertMe()">
-	<tab-heading>
-	Register
-</tab-heading>
-<div class="well">
-<form ng-submit="register(n,ne,np)">
-		<div class="form-group">
-			<label>Username</label>
-			<input type="text"  name="username" ng-model="n" class="form-control">
-		</div>
-		<div class="form-group">
-			<label>E-mail</label>
-			<input type="email"  name="email" ng-model="ne" class="form-control">
-		</div>
-		<div class="form-group">
-			<label>Password</label>
-			<input type="password"  name="password" ng-model="np" class="form-control">
-		</div>
-		<button type="submit" ng-disabled="!n || !ne || !np" class="btn btn-primary">Register</button>
-	</form>
-</div>
-</tab>
-</tabset>
+	<div class="well">
+		<form class="form" ng-submit="login(pass)">
+			<p>Por favor, ingresa la contraseña provista por UrbanEyes para ingresar a la interfaz de administración.</p>
+			<div class="form-group">
+				<input type="password" ng-model="pass" placeholder="Contraseña" name="password" class="form-control" required>
+			</div>
+			<button class="btn btn-success" class="form-control" type="submit" ng-disabled="!pass.length">Ingresar</button>
+		</form>
+	</div>
 
 </div>

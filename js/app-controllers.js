@@ -24,21 +24,9 @@
     	/*
 		The login behaviour
     	*/
-    	$scope.login = function(username,password){
+    	$scope.login = function(password){
     		if(!$scope.user && !$scope.isLoggedIn){
-
-    		}
-    	}
-
-    	/*
-		The register behaviour
-    	*/
-    	$scope.register = function(name, username, password){
-    		if(!$scope.user && !$scope.isLoggedIn){
-    			$http.post(APIURL+"register/")
-    				.success(function(data){
-
-    				})
+                alert(password)
     		}
     	}
 
