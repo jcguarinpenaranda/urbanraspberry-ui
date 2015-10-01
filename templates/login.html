@@ -1,0 +1,15 @@
+<div class="container" style="max-width:500px">
+
+	<h1 class="text-center">{{APP.name}}</h1>
+
+	<div class="well">
+		<form class="form" ng-submit="login(pass)">
+			<p>Por favor, ingresa la contraseña provista por {{APP.name}} para ingresar a la interfaz de administración.</p>
+			<div class="form-group">
+				<input type="password" ng-model="pass" placeholder="Contraseña" name="password" class="form-control" required>
+			</div>
+			<button class="btn btn-success" class="form-control" type="submit" ng-disabled="!pass.length">Ingresar</button>
+		</form>
+	</div>
+
+</div>
