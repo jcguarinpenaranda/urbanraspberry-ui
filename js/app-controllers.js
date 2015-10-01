@@ -9,6 +9,8 @@
     */
     app.controller('MainController', ['$scope','$http','APIURL',function($scope,$http,APIURL){
 
+        $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+
     	$scope.isLoggedIn = false;
     	$scope.user = false;
 
@@ -26,7 +28,15 @@
     	*/
     	$scope.login = function(password){
     		if(!$scope.user && !$scope.isLoggedIn){
-                alert(password)
+                $http.post(APIURL+"login/", {password:password})
+                    .success(function(data){
+                        if(data.status == 200){
+                            $scope.user = {};
+                            location.href="#/config";
+                        }else{
+                            alert("La contraseña es incorrecta.")
+                        }
+                    })
     		}
     	}
 

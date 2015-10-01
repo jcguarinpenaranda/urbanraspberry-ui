@@ -3,7 +3,7 @@
 require 'vendor/autoload.php';
 
 $app = new \Slim\Slim(array(
-		'mode'=>'production'
+		'mode'=>'development'
 	));
 
 // Only invoked if mode is "production"
@@ -24,13 +24,53 @@ $app->configureMode('development', function () use ($app) {
 
 //The login behaviour
 $app->post('/login/', function () use ($app) {
-	$params = $app->request->params();
+	$params = $app->request()->params();
+
+	if(!isset($params['password'])){
+
+		echo json_encode(array("status"=>400, "description"=>"Bad Request. Missing parameter password."));
+
+		return;
+	}
 
 	$user = [];
-	$user[] = $params['email'];
-	$user[] = $params['password'];
+	$user['password'] = $params['password'];
+
+	$passwordsfile = file_get_contents("passwords.json");
+	$passwords = json_decode($passwordsfile,true);
+
+
+	if(md5($user['password']) == $passwords['user'] || md5($user['password']) == $passwords['production']){
+		
+		session_start();		
+
+		$_SESSION['user'] = $user;
+
+		echo json_encode(array("status"=>200, "description"=>"Logged in"));
+
+	}else{
+
+		echo json_encode(array("status"=>400, "description"=>"Bad password."));
+	}
 
 });
+
+
+$app->post('/logout/', function () use ($app) {
+
+	session_start();
+	session_destroy();
+
+});
+
+$app->get('/logout/', function () use ($app) {
+
+	session_start();
+	session_destroy();
+
+});
+
+
 
 /*
 The register behaviour of the
