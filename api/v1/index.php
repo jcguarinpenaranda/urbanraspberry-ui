@@ -51,6 +51,22 @@ $app->post('/login/', function () use ($app) {
 	}else{
 
 		echo json_encode(array("status"=>400, "description"=>"Bad password."));
+
+	}
+
+});
+
+$app->get('/login/', function() use ($app){
+	session_start();
+
+	if(isset($_SESSION['user']) && !empty($_SESSION['user'])){
+
+		echo json_encode(array("status"=>200, "description"=>"Logged in."));
+
+	}else{
+
+		echo json_encode(array("status"=>404, "description"=>"Not logged in."));
+
 	}
 
 });
@@ -111,5 +127,6 @@ $app->get('/fullpath/',function(){
 	$req = $app->request;
 	echo $req->getUrl().$req->getPath();
 });
+
 
 $app->run();
