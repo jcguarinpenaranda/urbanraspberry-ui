@@ -87,30 +87,6 @@ $app->get('/logout/', function () use ($app) {
 });
 
 
-
-/*
-The register behaviour of the
-*/
-$app->post('/register/', function () use ($app) {
-	$params = $app->request->params();
-
-	if(!isset($params['username']) || !isset($params['email']) || isset($params['password'])){
-
-	}
-
-	$user = [];
-	$user[] = $params['username'];
-	$user[] = $params['email'];
-	$user[] = $params['password'];
-
-	//Add the user to the database
-
-	if(true){
-		echo json_encode(array("status"=>200));
-	}
-
-});
-
 $app->post('/recover-password/', function() use ($app){
 	$params = $app->request->params();
 
