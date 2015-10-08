@@ -8,7 +8,8 @@
         },
         urls:{
             login:"#/login",
-            config:"#/config"
+            config:"#/config",
+            admin:"#/admin"
         }
     });
 
@@ -34,6 +35,9 @@
             $http.post(APP.api.url+'logout/')
                 .success(function(data){
                     location.href = APP.urls.login;
+                })
+                .error(function(e){
+                    alert('Error!');
                 });
     	}
 
@@ -41,12 +45,12 @@
 		The login behaviour
     	*/
     	$scope.login = function(password){
-    		if(!$scope.user && !$scope.isLoggedIn){
+    		if(!$scope.isLoggedIn){
                 $http.post(APP.api.url+"login/", {password:password})
                     .success(function(data){
                         if(data.status == 200){
                             $scope.user = {};
-                            location.href= APP.urls.config;
+                            location.href= APP.urls.admin;
                             $scope.isLoggedIn = true;
                         }else{
                             alert("La contraseña es incorrecta.");
@@ -73,7 +77,7 @@
         $scope.checkLoginStatus().success(function(data){
             if(data.status == 200){
                 $scope.isLoggedIn = true;
-                location.href = APP.urls.config;
+                location.href = APP.urls.admin;
             }
         })
 

@@ -6,6 +6,9 @@
     	.when('/login',{
     		templateUrl: "templates/login.html"
        	})
+        .when('/admin',{
+            templateUrl: "templates/admin.html"
+        })
         .when('/config',{
             templateUrl: "templates/config.html"
         })
