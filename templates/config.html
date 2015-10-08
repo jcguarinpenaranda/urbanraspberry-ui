@@ -1,27 +1,25 @@
 <div class="container" style="max-width:600px">
 
-	<div class="page-header"><h1>Tus dispositivos</h1></div>
+	<div class="page-header"><h1>Configuración</h1></div>
 
-	<accordion close-others="oneAtATime">
-	    <accordion-group>
-	    	<accordion-heading>
-	    	Arduino Yun-1 <i class="glyphicon glyphicon-chevron-down pull-right"></i>
-	    	</accordion-heading>
-	    	<h3>Variables sensadas</h3>
+	<h3 class="page-header">Idioma</h3>
+	<form class="form-inline">
+		<div class="form-group">
+			<select class="form-control">
+				<option>Español</option>
+			</select>
+		</div>
+		<button type="submit" class="btn btn-success">Cambiar</button>
+	</form>
 
-	    	<form class="form-inline">
-	    		<div class="form-group">
-			    <label for="exampleInputName2">Variable: </label>
-			    <select class="form-control" id="exampleInputName2" placeholder="Escoge una variable"></select>
-			  </div>
-			  <div class="form-group">
-			    <label for="exampleInputEmail2">Pines: </label>
-			    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="P.ej: a0,a1,a2..an">
-			  </div>
-			  <button type="submit" class="btn btn-default"><i class="glyphicon glyphicon glyphicon-floppy-disk"></i></button>
-	    	</form>
-
-	    </accordion-group>
-	</accordion>
-
+	<h3 class="page-header">Cambiar contraseña</h3>
+	<form class="form-inline">
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Contraseña actual">
+		</div>
+		<div class="form-group">
+			<input type="text" class="form-control" placeholder="Contraseña nueva">
+		</div>
+		<button type="submit" class="btn btn-success">Cambiar</button>
+	</form>
 </div>
