@@ -7,7 +7,12 @@
     		templateUrl: "templates/login.html"
        	})
         .when('/admin',{
-            templateUrl: "templates/admin.html"
+            templateUrl: "templates/admin.html",
+            controller:"AdminController"
+        })
+        .when('/add-device',{
+            templateUrl: "templates/add-device.html",
+            controller:"AddDeviceController"
         })
         .when('/config',{
             templateUrl: "templates/config.html"

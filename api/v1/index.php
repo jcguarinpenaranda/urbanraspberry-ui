@@ -104,5 +104,4 @@ $app->get('/fullpath/',function(){
 	echo $req->getUrl().$req->getPath();
 });
 
-
 $app->run();

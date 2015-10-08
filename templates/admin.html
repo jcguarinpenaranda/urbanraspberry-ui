@@ -1,15 +1,25 @@
 <div class="container" style="max-width:600px">
 
-	<div class="page-header"><h1>Tus dispositivos</h1></div>
+	<div class="page-header">
+		<div class="row">
+			<div class="col-md-6">
+				<h3>Tus dispositivos </h3> 
+			</div>
+			<div class="col-md-6 text-right">
+				Agregar más <a href="#/add-device" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a> 
+			</div>
+		</div>
+		
+	</div>
 
 	<accordion close-others="oneAtATime">
-	    <accordion-group>
+	    <accordion-group ng-repeat="eq in equipos">
 	    	<accordion-heading>
-	    	Arduino Yun-1 <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+	    	{{eq.nombre}} ({{eq.id}}) <i class="glyphicon glyphicon-chevron-down pull-right"></i>
 	    	</accordion-heading>
-	    	<h3>Variables sensadas</h3>
+	    	<h4>Variables sensadas</h4>
 
-	    	<form class="form-inline">
+	    	<form class="form-inline" ng-repeat="var in eq.variables">
 	    		<div class="form-group">
 			    <label for="exampleInputName2">Variable: </label>
 			    <select class="form-control" id="exampleInputName2" placeholder="Escoge una variable"></select>
@@ -20,6 +30,8 @@
 			  </div>
 			  <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon glyphicon-floppy-disk"></i></button>
 	    	</form>
+	    	<br>
+	    	<a href>+ Agregar Variable</a>
 
 	    </accordion-group>
 	</accordion>

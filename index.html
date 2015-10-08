@@ -3,20 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>UrbanEyes: Interfaz de Administración</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 </head>
 <body ng-controller="MainController as main">
 
 <div ng-show="isLoggedIn">
 
 	<div style="background-color:#cccccc">
-		<div class="container" >
-				<h3>
-					{{APP.name}}
-					<!-- glyphicon glyphicon-list-alt -->
-					<a class="btn btn-default" href="#/admin"><i class="glyphicon glyphicon-list-alt"></i></a>
-					<a class="btn btn-default" href="#/config"><i class="glyphicon glyphicon-cog"></i></a>
-					<a class="btn btn-danger" href  ng-click="logout()">Salir</a>
-				</h3>
+		<div class="container" style="max-width:600px;">
+				<div class="row">
+					<div class="col-md-6">
+						<h3>
+							{{APP.name}}
+						</h3>
+					</div>
+					<div class="col-md-6 text-right">
+						<p><a class="btn btn-default btn-sm" href="#/admin"><i class="glyphicon glyphicon-list-alt"></i></a>
+						<a class="btn btn-default btn-sm" href="#/config"><i class="glyphicon glyphicon-cog"></i></a>
+						<a class="btn btn-danger btn-sm" href  ng-click="logout()">Salir</a></p>
+					</div>
+				</div>
+				
 			</div>
 	</div>
 
@@ -30,7 +37,7 @@
 
 <!-- Bootstrap -->
 <script src="lib/bootstrap/bootstrap.min.js"></script>
-<link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+<link rel="stylesheet" href="lib/bootstrap/bootstrap.material.min.css">
 
 <!-- Angular JS -->
 <script src="lib/angular.js/angular.js"></script>

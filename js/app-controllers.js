@@ -4,7 +4,8 @@
     app.value('APP',{
         name:"UrbanEyes",
         api:{
-            url:"api/v1/"
+            url:"api/v1/",
+            urban:"../urbanraspberry/"
         },
         urls:{
             login:"#/login",
@@ -82,5 +83,39 @@
         })
 
     }]);
+
+    app.controller('AdminController',['$scope', '$http', 'APP', function($scope, $http, APP){
+
+        function getDevices (){
+            return $http.get(APP.api.urban+"equipos/");
+        }
+
+
+        getDevices().success(function(data){
+            $scope.equipos = data;
+        }).error(function(e){
+            alert('Ha ocurrido un error al cargar los equipos');
+        })
+
+    }]);
+
+    app.controller('AddDeviceController', ['$scope', '$http', 'APP', function($scope, $http, APP){
+        
+        $scope.device = {
+            name:"",
+            id:""
+        }
+
+        $scope.save = function(){
+            if($scope.device.name!="" && $scope.device.id!=""){
+                $http.post(APP.api.urban+"equipos/",{nombre:$scope.device.name, id: $scope.device.id})
+                    .success(function(data){
+                        alert(data.description);
+                    })
+            }
+        }
+
+    }]);
+
 
 })();
