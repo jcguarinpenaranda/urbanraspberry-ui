@@ -90,6 +90,37 @@
             return $http.get(APP.api.urban+"equipos/");
         }
 
+        function deleteDevice (id){
+          return $http.delete(APP.api.urban + "equipos/"+id);
+        }
+
+        $scope.deleteDevice = function(id){
+          if(prompt("Para eliminar el dispositivo, escribe su id: "+id) === id){
+            deleteDevice(id).success(function(data){
+              if(data.status === 200){
+                var pos;
+                for(var i = 0; i<$scope.equipos.length; i++){
+                  if($scope.equipos[i].id === id){
+                    pos = i;
+                  }
+                }
+
+                $scope.equipos.splice(pos,1);
+
+              }
+            })
+          }
+        }
+
+        $scope.addVariable = function(pos){
+          $scope.equipos[pos].variables.push({
+            "nombe":"",
+            "pines":""
+          });
+
+          alert($scope.equipos[pos].variables.length)
+
+        }
 
         getDevices().success(function(data){
             $scope.equipos = data;
@@ -100,7 +131,7 @@
     }]);
 
     app.controller('AddDeviceController', ['$scope', '$http', 'APP', function($scope, $http, APP){
-        
+
         $scope.device = {
             name:"",
             id:""

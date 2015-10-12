@@ -15,7 +15,7 @@
 
 	<form>
 		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Search.." ng-model="search">
+			<input type="text" class="form-control" placeholder="Buscar dispositivo.." ng-model="search">
 			<div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
 		</div>
 	</form>
@@ -26,21 +26,21 @@
 				{{eq.nombre}} ({{eq.id}}) <i class="glyphicon glyphicon-chevron-down pull-right"></i>
 			</accordion-heading>
 			<h4>Variables sensadas</h4>
-
 			<form class="form-inline" ng-repeat="var in eq.variables">
 				<div class="form-group">
-					<label for="exampleInputName2">Variable: </label>
-					<select class="form-control" id="exampleInputName2" placeholder="Escoge una variable"></select>
+					<label>Variable: </label>
+					<select class="form-control" placeholder="Escoge una variable">
+					</select>
 				</div>
 				<div class="form-group">
-					<label for="exampleInputEmail2">Pines: </label>
-					<input type="email" class="form-control" id="exampleInputEmail2" placeholder="P.ej: a0,a1,a2..an">
+					<label>Pines: </label>
+					<input type="text" class="form-control" placeholder="P.ej: a0,a1,a2..an">
 				</div>
 				<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon glyphicon-floppy-disk"></i></button>
 			</form>
 			<br>
-			<a href>+ Agregar Variable</a>
-
+			<button class="btn btn-default btn-sm">+ Agregar Variable</button>
+			<button class="btn btn-danger btn-sm" ng-click="deleteDevice(eq.id)">Eliminar dispositivo</button>
 		</accordion-group>
 	</accordion>
 
