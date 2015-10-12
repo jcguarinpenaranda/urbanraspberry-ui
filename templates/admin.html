@@ -3,37 +3,45 @@
 	<div class="page-header">
 		<div class="row">
 			<div class="col-md-6">
-				<h3>Tus dispositivos </h3> 
+				<h3>Tus dispositivos </h3>
 			</div>
 			<div class="col-md-6 text-right">
-				Agregar más <a href="#/add-device" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a> 
+				Agregar más <a href="#/add-device" class="btn btn-sm btn-default"><i class="glyphicon glyphicon-plus"></i></a>
 			</div>
 		</div>
-		
+
 	</div>
 
+
+	<form>
+		<div class="input-group">
+			<input type="text" class="form-control" placeholder="Search.." ng-model="search">
+			<div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+		</div>
+	</form>
+	<br>
 	<accordion close-others="oneAtATime">
-	    <accordion-group ng-repeat="eq in equipos">
-	    	<accordion-heading>
-	    	{{eq.nombre}} ({{eq.id}}) <i class="glyphicon glyphicon-chevron-down pull-right"></i>
-	    	</accordion-heading>
-	    	<h4>Variables sensadas</h4>
+		<accordion-group ng-repeat="eq in equipos | filter:search">
+			<accordion-heading>
+				{{eq.nombre}} ({{eq.id}}) <i class="glyphicon glyphicon-chevron-down pull-right"></i>
+			</accordion-heading>
+			<h4>Variables sensadas</h4>
 
-	    	<form class="form-inline" ng-repeat="var in eq.variables">
-	    		<div class="form-group">
-			    <label for="exampleInputName2">Variable: </label>
-			    <select class="form-control" id="exampleInputName2" placeholder="Escoge una variable"></select>
-			  </div>
-			  <div class="form-group">
-			    <label for="exampleInputEmail2">Pines: </label>
-			    <input type="email" class="form-control" id="exampleInputEmail2" placeholder="P.ej: a0,a1,a2..an">
-			  </div>
-			  <button type="submit" class="btn btn-success"><i class="glyphicon glyphicon glyphicon-floppy-disk"></i></button>
-	    	</form>
-	    	<br>
-	    	<a href>+ Agregar Variable</a>
+			<form class="form-inline" ng-repeat="var in eq.variables">
+				<div class="form-group">
+					<label for="exampleInputName2">Variable: </label>
+					<select class="form-control" id="exampleInputName2" placeholder="Escoge una variable"></select>
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail2">Pines: </label>
+					<input type="email" class="form-control" id="exampleInputEmail2" placeholder="P.ej: a0,a1,a2..an">
+				</div>
+				<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon glyphicon-floppy-disk"></i></button>
+			</form>
+			<br>
+			<a href>+ Agregar Variable</a>
 
-	    </accordion-group>
+		</accordion-group>
 	</accordion>
 
 </div>
