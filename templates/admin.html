@@ -15,7 +15,7 @@
 
 	<form>
 		<div class="input-group">
-			<input type="text" class="form-control" placeholder="Buscar dispositivo.." ng-model="search">
+			<input type="text" class="form-control" placeholder="Buscar por id, nombre, variables, pines.." ng-model="search">
 			<div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
 		</div>
 	</form>
@@ -26,20 +26,23 @@
 				{{eq.nombre}} ({{eq.id}}) <i class="glyphicon glyphicon-chevron-down pull-right"></i>
 			</accordion-heading>
 			<h4>Variables sensadas</h4>
-			<form class="form-inline" ng-repeat="var in eq.variables">
-				<div class="form-group">
+			<form class="form-inline" ng-repeat="var in eq.variables"  ng-submit="salvarVariable($index,eq.id,variable,pines)">
+				<div class="form-group" ng-show="!var.nombre">
 					<label>Variable: </label>
-					<select class="form-control" placeholder="Escoge una variable">
+					<select class="form-control" ng-model="variable">
+						<option ng-repeat="s in variablesUrban">{{s.variable}}</option>
 					</select>
 				</div>
+				<b ng-show="var.nombre">{{var.nombre | uppercase}}</b>
 				<div class="form-group">
 					<label>Pines: </label>
-					<input type="text" class="form-control" placeholder="P.ej: a0,a1,a2..an">
+					<input type="text" class="form-control"  ng-model="pines" ng-init="pines=var.pinesTexto" placeholder="P.ej: a0,a1,a2..an">
 				</div>
-				<button type="submit" class="btn btn-success"><i class="glyphicon glyphicon glyphicon-floppy-disk"></i></button>
+				<button type="submit" class="btn btn-sm btn-success" ng-disabled="(!pines || !variable) && pines == var.pinesTexto"><i class="glyphicon glyphicon glyphicon-floppy-disk"></i></button>
+				<button type="button" class="btn btn-sm btn-default">x</button>
 			</form>
 			<br>
-			<button class="btn btn-default btn-sm">+ Agregar Variable</button>
+			<button class="btn btn-default btn-sm" ng-click='eq.variables.push({"nombre":"","pines":[],"pinesTexto":""})'>+ Agregar Variable</button>
 			<button class="btn btn-danger btn-sm" ng-click="deleteDevice(eq.id)">Eliminar dispositivo</button>
 		</accordion-group>
 	</accordion>

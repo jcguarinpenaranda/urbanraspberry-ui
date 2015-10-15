@@ -71,6 +71,10 @@
         }
 
 
+        $scope.getVariablesUrban = function(){
+          return $http.get(APP.api.urban+"variables/");
+        }
+
         /*
         Al final se mira si el usuario está logueado y si lo está
         se le redirige a la pantalla que es.
@@ -79,15 +83,29 @@
             if(data.status == 200){
                 $scope.isLoggedIn = true;
                 location.href = APP.urls.admin;
+            }else{
+              location.href=APP.urls.login;
             }
-        })
+        });
+
+        /*
+        Siempre que se inicia la aplicación se llama al servicio web para obtener
+        las variables activas en el servidor remoto.
+        */
+        $scope.getVariablesUrban().success(function(data){
+          $scope.variablesUrban = data;
+          console.log(data)
+        }).error(function(e){
+          alert('Ha ocurrido un error al cargar las variables activas en el servidor remoto');
+          console.log(e)
+        });
 
     }]);
 
     app.controller('AdminController',['$scope', '$http', 'APP', function($scope, $http, APP){
 
         function getDevices (){
-            return $http.get(APP.api.urban+"equipos/");
+            return $http.get(APP.api.urban+"equipos");
         }
 
         function deleteDevice (id){
@@ -112,13 +130,32 @@
           }
         }
 
-        $scope.addVariable = function(pos){
-          $scope.equipos[pos].variables.push({
-            "nombe":"",
-            "pines":""
-          });
+        $scope.salvarVariable = function(pos, eqid, variable, pinesTexto){
+            var pines;
 
-          alert($scope.equipos[pos].variables.length)
+            try{
+              pines = pinesTexto.split(',');
+            }catch(e){
+              alert("Texto ingresado no es válido");
+            }
+
+            var nueva = {
+                nombre:variable,
+                pines:pines,
+                pinesTexto:pinesTexto
+            }
+
+            $http.post(APP.api.urban+"equipos/"+eqid+"/variables", nueva)
+            .success(function(data){
+              if(data.status == 201){
+                location.reload();
+                $scope.equipos[eqid].variables.push(nueva);
+              }else{
+                alert("Ha ocurrido un error al guardar la variable sensada")
+              }
+            }).error(function(e){
+              alert("Ha ocurrido un error al guardar la variable sensada")
+            })
 
         }
 
@@ -139,7 +176,7 @@
 
         $scope.save = function(){
             if($scope.device.name!="" && $scope.device.id!=""){
-                $http.post(APP.api.urban+"equipos/",{nombre:$scope.device.name, id: $scope.device.id})
+                $http.post(APP.api.urban+"equipos",{nombre:$scope.device.name, id: $scope.device.id})
                     .success(function(data){
                         alert(data.description);
                     })
