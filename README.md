@@ -7,6 +7,17 @@ en este último y posteriormente enviarlos al API de UrbanEyes.
 
 Cali, Colombia, 2015.
 
+
+##Versiones
+###v0.0.1
+* Contenido sólo en Español
+* Se pueden obtener y visualizar los equipos añadidos localmente
+* Se pueden crear equipos nuevos con un id especificado
+* Se pueden añadir variables a los equipos y establecer los pines en los cuales se quiere que se lea la información
+* Se puede cambiar la contraseña
+* Se puede hacer login/logout
+* Se pueden filtrar los equipos agregados por nombre, nombre de variable, id, pin
+
 ##Licencia
 
 The MIT License (MIT)
@@ -25,4 +36,4 @@ Desarrollado por:
 
 * Nicolás Escobar Cruz
 * Juan David Orejuela
-* Juan Camilo Guarín P - @jcguarinp
+* Juan Camilo Guarín P - twitter: @jcguarinp

@@ -41,8 +41,8 @@ $app->post('/login/', function () use ($app) {
 
 
 	if(md5($user['password']) == $passwords['user'] || md5($user['password']) == $passwords['production']){
-		
-		session_start();		
+
+		session_start();
 
 		$_SESSION['user'] = $user;
 
@@ -94,6 +94,31 @@ $app->post('/recover-password/', function() use ($app){
 	$user[] = $params['email'];
 
 	//send email
+
+
+});
+
+//Permitir cambiar el password
+$app->post('/change-password/',function() use ($app){
+
+	$data = $app->request->params();
+
+	if($data !== null){
+
+		$passwords = file_get_contents('passwords.json');
+		$passwords = json_decode($passwords,true);
+
+		if(md5($data['old']) == $passwords['user']){
+			$passwords['user'] = md5($data['new']);
+			file_put_contents('passwords.json',json_encode($passwords));
+			echo json_encode(array("status"=>200, "description"=> "Password changed"));
+		}else{
+			echo json_encode(array("status"=>404, "description"=> "Wrong password"));
+		}
+
+	}else{
+		echo json_encode(array("status"=>400, "description"=> "Bad request. Missing parameters old & new"));
+	}
 
 });
 
