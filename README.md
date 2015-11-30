@@ -1,12 +1,32 @@
 # urbanraspberry-ui
-Interfaz gráfica que se implementa en la raspberry, en la que el usuario puede configurar los dispositivos y sensores
+Interfaz gráfica que se debe alojar en una Raspberry, en la que el usuario puede configurar los dispositivos y sensores que quiere utilizar para enviar datos a UrbanEyes.
 
 Este código hace parte de un proyecto mayor, que apunta a
 conectar una Raspberry con un Arduino para recopilar datos sensados
-en este último y posteriormente enviarlos al API de UrbanEyes.
+en este último y posteriormente enviarlos al API de UrbanEyes. La arquitectura
+de dicho proyecto es la siguiente:
+
+![Muestra de la arquitectura del proyecto](/img/arquitectura.png?raw=true)
+Figura 1. Arquitectura del proyecto para enviar datos a UrbanEyes
+
+En este caso, el presente repositorio se aloja en las Raspberries 1,2,3,4..n
 
 Cali, Colombia, 2015.
 
+
+##Arquitectura del repositorio
+Se tienen las siguientes carpetas:
+* api/: Carpeta donde se encuentra un servicio web que se encarga de manejar las acciones de la interfaz y se conecta con el servicio web desarrollado en el repositorio "urbanraspberry" para agregar, editar y borrar equipos y variables.
+* templates/: Carpeta donde se encuentran las plantillas HTML que se muestran en la aplicación
+* lib/: Carpeta de librerías que se utilizaron
+* js/: Archivos javascript que definen el comportamiento de la aplicación
+* css/: Los archivos css propios de la aplicación
+
+##Librerías utilizadas
+* Bootstrap (css y js): Se encarga de la estética de la aplicación
+* Jquery: Añadido como dependencia de Bootstrap
+* Angular.js: Librería MVC de Google para hacer aplicaciones web
+* UI-Bootstrap: Se encarga de parte de la estética de la aplicación, conectándose con Angular.js
 
 ##Versiones
 ###v0.0.1
@@ -17,18 +37,6 @@ Cali, Colombia, 2015.
 * Se puede cambiar la contraseña
 * Se puede hacer login/logout
 * Se pueden filtrar los equipos agregados por nombre, nombre de variable, id, pin
-
-##Licencia
-
-The MIT License (MIT)
-
-Copyright (c) 2014 Alf Eaton
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 ##Créditos
 
